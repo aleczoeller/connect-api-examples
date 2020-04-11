@@ -1,10 +1,17 @@
 #!/usr/bin/env python
 # coding: utf-8
-import ConfigParser
+try:
+    import ConfigParser as cp
+except:
+    import configparser as cp
+import os
 
 # To read your secret credentials
-config = ConfigParser.ConfigParser()
-config.read('config.ini')
+config = cp.ConfigParser()
+try:
+    config.read(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'config.ini')))
+except:
+    config.read('config.ini')
 
 
 # Retrive credentials based on is_prod
